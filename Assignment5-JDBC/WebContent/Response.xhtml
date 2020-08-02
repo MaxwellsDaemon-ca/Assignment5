@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<head>
+		<title>
+			<ui:insert name="ResponseForm">Response</ui:insert>
+		</title>
+	</head>
+		
+	<body>
+		<ui:composition template="/layouts/commonLayout.xhtml">
+			<ui:define name="content">
+				<h:form>
+					<center><p>Hello #{userModel.firstName} #{userModel.lastName}, your orders are as follows: </p>
+					
+					<h:dataTable value="#{formController.service.orders}" var="o" style="border:1px solid black; border-radius:5px; padding:10px; margin:auto; width:60%;background-color:#eee;">
+						<h:column>
+							<f:facet name="header" style="font-family:sans-serif; font-weight:bold; text-align:center;">Order Number:</f:facet>
+							#{o.orderNo}
+						</h:column>
+						<h:column>
+							<f:facet name="header" style="font-family:sans-serif; font-weight:bold; text-align:center;">Product Name:</f:facet>
+							#{o.productName}
+						</h:column>
+						<h:column>
+							<f:facet name="header" style="font-family:sans-serif; font-weight:bold; text-align:center;">Price:</f:facet>
+							#{o.price}
+						</h:column>
+						<h:column>
+							<f:facet name="header" style="font-family:sans-serif; font-weight:bold; text-align:center;">Quantity:</f:facet>
+							#{o.quantity}
+						</h:column>
+					</h:dataTable>
+					
+					<h:button value="Back" outcome="login-form"/></center>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</body>
+
+</html>
